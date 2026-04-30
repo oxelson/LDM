@@ -1,0 +1,30 @@
+{
+  "package": "LDM",
+  "packageName": "LDM",
+  "releases": [
+    {
+      "version": "6.15.0 - old",
+      "status": "",
+      "include": "0",
+      "releaseDate": "2023-12-06",
+      "docsets": {
+        "": {
+          "baseUrl": "http://docs.unidata.ucar.edu/ldm/",
+          "docsetName": "LDM Documentation - Old"
+        }
+      }
+    },
+    {
+      "version": "6.15.0",
+      "status": "current",
+      "include": "1",
+      "releaseDate": "2023-12-06",
+      "docsets": {
+        "userguide": {
+          "baseUrl": "http://127.0.0.1:4000/index.html",
+          "docsetName": "LDM Documentation"
+        }
+      }
+    }
+  ]
+}

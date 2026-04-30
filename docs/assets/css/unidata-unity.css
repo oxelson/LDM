@@ -47,7 +47,7 @@
   --uu-body-text-color: var(--bs-body-color);
   --uu-body-background-color: var(--bs-body-bg);
   --uu-sidenav-background-color: hsl(from var(--bs-body-bg) h s 93%);
-  --uu-body-background-image: url("/assets/images/UCAR-Waves-Lines-Only-66.png");
+  --uu-body-background-image: url("assets/images/UCAR-Waves-Lines-Only-66.png");
   --uu-link-color: hsl(from var(--uu-heading-color) h s 30%);
   --uu-link-hover-color: hsl(from var(--uu-link-color) h 70% 70%);
   --uu-mono-font-family: Roboto Mono, monospace;

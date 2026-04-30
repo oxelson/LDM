@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title></title>
+        <description>Documenation for the Local Data Manager (LDM) software package.</description>
+        <link>/</link>
+        <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 30 Apr 2026 15:23:52 -0600</pubDate>
+        <lastBuildDate>Thu, 30 Apr 2026 15:23:52 -0600</lastBuildDate>
+        <generator>Jekyll v4.4.1</generator>
+        
+    </channel>
+</rss>

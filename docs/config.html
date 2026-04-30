@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<meta name="doc_version" content="6.15.0">
+<title>Configuring The Local Data Manager (LDM) | LDM</title>
+<link rel="stylesheet" href="assets/css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="assets/css/modern-business.css">
+<link rel="stylesheet" href="assets/css/lavish-bootstrap.css">
+<link rel="stylesheet" href="assets/css/customstyles.css">
+<link rel="stylesheet" href="assets/css/theme-unidata.css">
+
+<script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+    integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+<script src="assets/js/jquery.navgoco.min.js"></script>
+
+
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js"
+    integrity="sha512-zPB79j2C+3sFS9zcA3vg/z6bVKzJVEyu9pY5w89akQRys76zpAT2t6S3wZKla3QQ14O5l/Yt0RUQ/DHXx82Y5g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+<script src="assets/js/toc.js"></script>
+<script src="assets/js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+  <script>
+    $(document).ready(function () {
+      // Initialize navgoco with default options
+      $("#mysidebar").navgoco({
+        caretHtml: '',
+        accordion: true,
+        openClass: 'active', // open
+        save: false, // leave false or nav highlighting doesn't work right
+        cookie: {
+          name: 'navgoco',
+          expires: false,
+          path: '/'
+        },
+        slide: {
+          duration: 400,
+          easing: 'swing'
+        }
+      });
+
+      $("#collapseAll").click(function (e) {
+        e.preventDefault();
+        $("#mysidebar").navgoco('toggle', false);
+      });
+
+      $("#expandAll").click(function (e) {
+        e.preventDefault();
+        $("#mysidebar").navgoco('toggle', true);
+      });
+
+    });
+
+  </script>
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("#tg-sb-link").click(function () {
+        $("#tg-sb-sidebar").toggle();
+        $("#tg-sb-content").toggleClass('col-md-9');
+        $("#tg-sb-content").toggleClass('col-md-12');
+        $("#tg-sb-icon").toggleClass('fa-toggle-on');
+        $("#tg-sb-icon").toggleClass('fa-toggle-off');
+      });
+    });
+  </script>
+  
+
+</head>
+
+<body>
+  <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html" style="padding-right:0px;">&nbsp;<span class="projectTitle">
+          LDM User Guide</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+              
+              <li class="dropdown" id="vermenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Version 6.15.0<b class="caret"></b></a>
+                <ul class="dropdown-menu" id="docmenu">
+                  
+                  
+                  <li id="remove"><a href="">Menu Loading...</a></li>
+                  
+                  
+                </ul>
+              </li>
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="https://downloads.unidata.ucar.edu/ldm/" target="_blank">Download</a></li>
+                
+                
+                
+                <li><a href="https://support.unidata.ucar.edu/ldm/" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://github.com/Unidata/LDM" target="_blank">GitHub</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:support-ldm@unidata.ucar.edu?subject=Documentation Feedback feedback&body=I have some feedback about the Configuring The Local Data Manager (LDM) page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="assets/js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            var pageLocation = window.location.href;
+                            var searchJson = pageLocation.substring(0, pageLocation.lastIndexOf('/') + 1) + "assets/search/search.json";
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: searchJson,
+                                searchResultTemplate: '<li><a href="{url}" title="Configuring The Local Data Manager (LDM)">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div id="main">
+      <!-- Content Row -->
+      <div class="row" id="content">
+        
+        
+        <!-- Sidebar Column -->
+        <div class="col-md-3" id="tg-sb-sidebar">
+          
+
+<ul id="mysidebar" class="nav">
+  <!-- figure out title for sidebar
+     sidebar[0].product -> sidebar[0].title -> site.site_title -> empty
+       (sidebar yaml)       (sidebar yaml)     (_config.yaml)
+    -->
+  
+
+  <!-- figure out title for sidebar
+   sidebar[0].version -> site.docset_version -> empty
+     (sidebar yaml)        (_config.yaml)
+    -->
+  
+
+  
+
+  <!-- Both sidebar_title and sidebar_version defined -->
+  
+  <li class="sidebarTitle"><a href="index.html">LDM 6.15.0</a></li>
+  <!-- Only sidebar_title defined -->
+  
+
+  
+  
+  
+      
+  
+  <li>
+      <a title="Getting Started" href="#">Getting Started</a>
+      <ul>
+          
+          
+          
+          <li><a title="Overview Of The LDM" href="index.html">Overview Of The LDM</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Installation" href="#">Installation</a>
+      <ul>
+          
+          
+          
+          <li><a title="Installing The LDM" href="install.html">Installing The LDM</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Configuration" href="#">Configuration</a>
+      <ul>
+          
+          
+          
+          <li class="active"><a title="Configuring The LDM" href="config.html">Configuring The LDM</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Product Queue" href="queue.html">Product Queue</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Operations" href="#">Operations</a>
+      <ul>
+          
+          
+          
+          <li><a title="Daemons And Utilities" href="daemons.html">Daemons And Utilities</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Monitoring And Troubleshooting" href="monitoring.html">Monitoring And Troubleshooting</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Security" href="#">Security</a>
+      <ul>
+          
+          
+          
+          <li><a title="LDM Security" href="security.html">LDM Security</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        <div class="col-md-6" id="tg-sb-content">
+          <div class="post-header">
+   <h1 class="post-title-main">Configuring The Local Data Manager (LDM)</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+
+    
+   <!--
+  If breadcrumbs explicitly set in the front matter of the markdown source, use it.
+  -->
+
+
+
+
+
+
+<div id="breadcrumbs">
+  
+  <a href="index.html" class="bcStart">LDM</a>
+  
+  
+  <span class="bcEnd">Configuring The Local Data Manager (LDM)</span>
+  
+  
+</div>
+
+   <h2 id="overview">Overview</h2>
+
+<p>LDM configuration determines what data you request, how you process it, and
+whether you serve downstream clients.</p>
+
+<h2 id="configuration-directory">Configuration Directory</h2>
+
+<p>Configuration files are located in <code class="language-plaintext highlighter-rouge">$LDMHOME/etc/</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File.</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ldmd.conf</code></td>
+      <td>Core LDM configuration (requests, allows, execs)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pqact.conf</code></td>
+      <td>Pattern-action rules for processing data</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">registry.xml</code></td>
+      <td>Site metadata and runtime parameters</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">scour.conf</code></td>
+      <td>Rules for cleaning old files</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ldmdconf"><code class="language-plaintext highlighter-rouge">ldmd.conf</code></h2>
+
+<h3 id="upstream-data-requests">Upstream Data Requests</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request &lt;FEEDTYPE&gt; "&lt;pattern&gt;" &lt;hostname&gt;
+request IDS|DDPLUS ".*" idd.unidata.ucar.edu
+</code></pre></div></div>
+
+<h3 id="allowing-downstream-clients">Allowing Downstream Clients</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>allow &lt;FEEDTYPE&gt; &lt;hostname&gt;
+allow ANY *.myuniversity.edu
+</code></pre></div></div>
+
+<h3 id="executing-local-programs">Executing Local Programs</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exec "pqact -f ANY -p /home/ldm/etc/pqact.conf"
+</code></pre></div></div>
+
+<h3 id="logging">Logging</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>loglevel info
+</code></pre></div></div>
+
+<h2 id="pqactconf"><code class="language-plaintext highlighter-rouge">pqact.conf</code></h2>
+
+<p>Each rule matches incoming products and defines an action.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HDS ^.*NAM.*grib2$ FILE /data/models/nam/%Y%m%d_%H.grib2
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FILE</code></td>
+      <td>Save product to disk</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PIPE</code></td>
+      <td>Send product to another program</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EXEC</code></td>
+      <td>Run a command when product arrives</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DBFILE</code></td>
+      <td>Store metadata in a database</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="feedtypes">Feedtypes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feed(s)</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IDS</code>, <code class="language-plaintext highlighter-rouge">DDPLUS</code></td>
+      <td>Surface observations, bulletins</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HDS</code></td>
+      <td>Model output, GRIB</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NEXRAD2</code>, <code class="language-plaintext highlighter-rouge">NEXRAD3</code></td>
+      <td>Radar data</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CONDUIT</code></td>
+      <td>High-volume NCEP model data</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request HDS|NEXRAD3 ".*" idd.unidata.ucar.edu
+</code></pre></div></div>
+
+<h2 id="tuning-the-product-queue">Tuning The Product Queue</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;queue&gt;
+  &lt;size&gt;4000M&lt;/size&gt;
+&lt;/queue&gt;
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldmadmin delqueue
+ldmadmin mkqueue
+</code></pre></div></div>
+
+<h2 id="dns-and-authentication">DNS and Authentication</h2>
+
+<p>LDM relies on forward and reverse DNS. Hostnames must resolve consistently for
+authentication to succeed.</p>
+
+<h2 id="common-configuration-patterns">Common Configuration Patterns</h2>
+
+<h3 id="minimal-configuration">Minimal Configuration</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request IDS|DDPLUS ".*" idd.unidata.ucar.edu
+exec "pqact"
+</code></pre></div></div>
+
+<h3 id="relay-node">Relay Node</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request ANY ".*" upstream.example.edu
+allow ANY *.downstream.edu
+exec "pqact"
+</code></pre></div></div>
+
+<h2 id="validating-configuration">Validating Configuration</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ldmadmin check
+notifyme <span class="nt">-v</span> <span class="nt">-h</span> &lt;<span class="nb">hostname</span><span class="o">&gt;</span>
+ldmping &lt;<span class="nb">hostname</span><span class="o">&gt;</span>
+ldmadmin restart
+</code></pre></div></div>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+        </div>
+        
+        <div class="col-md-3" id="tg-sb-sidebar-toc">
+          
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: '.container h2, .container h3, .container h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc" class="fa fa-list-ul"></div>
+
+        </div>
+        
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /#main -->
+  </div>
+  <div id="footer">
+       <footer class="unidata">
+
+    <div id="content-footer">
+     <h2>NSF Unidata Support</h2>
+     <ul>
+      <li>NSF Unidata provides free technical support to our community members. For more information, please see our <a href="https://support.unidata.ucar.edu/conditions-of-support/">Conditions Of Support</a>.</li>
+      <li>Visit: <a href="https://support.unidata.ucar.edu/">NSF Unidata Support </a></li>
+      <li>Email: <a href="mailto:support@unidata.ucar.edu">support@unidata.ucar.edu</a></li>
+      <li>Report a security issue/vulnerability: <a href="mailto:security@unidata.ucar.edu">security@unidata.ucar.edu</a></li>
+     </ul>
+    </div> <!-- /#content-footer -->
+
+    <div id="legal-footer">
+     <ul>
+      <li>&#169; NSF Unidata</li>
+      <li><a href="https://support.unidata.ucar.edu/conditions-of-support">Conditions of Support</a></li>
+      <li><a href="https://www.unidata.ucar.edu/legal/participation.html">Participation Policy</a></li>
+      <li><a href="https://www.ucar.edu/privacy-policy">Privacy Policy</a></li>
+      <li><a href="https://www.ucar.edu/terms-of-use">Terms of Use</a></li>
+      <li><a href="https://www.ucar.edu/accessibility">Accessibility</a></li>
+     </ul>
+    </div> <!-- /#legal-footer -->
+
+    <div id="nsf-footer">
+     <a href="https://www.nsf.gov" class="logo">
+      <img src="assets/images/nsf_logo_transparent.png" alt="U.S. National Science Foundation"/>
+     </a>
+     <div>
+      NSF Unidata is a member of the
+      <a href="https://www.ucp.ucar.edu/">UCAR Community Programs</a>,
+      managed by the
+      <a href="https://www.ucar.edu">University Corporation for Atmospheric Research</a>,
+      and funded by the
+      <a href="https://www.nsf.gov">U.S. National Science Foundation</a>.
+     </div>
+    </div> <!-- /#nsf-footer -->
+
+   </footer>
+  </div>
+
+</body>
+
+
+</html>
